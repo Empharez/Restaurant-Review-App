@@ -1,9 +1,17 @@
 import React from 'react';
 
-const RestaurantList = () => {
+const RestaurantList = (props) => {
+    const restaurants = props.restaurants.map((restaurant) => {
+        return(
+            <div>
+                <h3>{restaurant.restaurantName}</h3>
+                <div>{restaurant.address}</div>
+            </div>
+        )
+    });
     return(
-        <div>Restaurant List</div>
+        <div>{restaurants}</div>
     )
 }
 
-export default RestaurantList
+export default RestaurantList;
