@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple service that offers reviews of restaurants around you.,using external APIs, Google Maps and Google Places . Built with React.js, HTML, CSS, Material UI/Boostrap and Vanilla JS
 
 ## Available Scripts
 
