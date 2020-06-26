@@ -12,11 +12,17 @@ class App extends Component {
   state = {
     restaurants: JSON
   }
+
+  getKeyword = (event) => {
+    console.log(event.target.value)
+  }
   render(){
     return(
       <div>
-        <Header/>
-      < RestaurantList restaurants={this.state.restaurants}/>
+        <Header keywords={this.getKeyword}/>
+      < RestaurantList restaurants={this.state.restaurants}>
+        <h3>Restaurant list are: </h3>
+      </RestaurantList>
       </div>
       
     )

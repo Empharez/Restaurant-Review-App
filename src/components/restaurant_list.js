@@ -1,16 +1,19 @@
 import React from 'react';
+import RestaurantItem from './restaurant_list_item'
+//import classes from '../css/styles.css'
 
 const RestaurantList = (props) => {
     const restaurants = props.restaurants.map((restaurant) => {
         return(
-            <div>
-                <h3>{restaurant.restaurantName}</h3>
-                <div>{restaurant.address}</div>
-            </div>
+            <RestaurantItem restaurant={restaurant}/>
+            
         )
     });
     return(
-        <div>{restaurants}</div>
+        <div>
+            {props.children}
+            {restaurants}
+        </div>
     )
 }
 
