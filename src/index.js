@@ -10,17 +10,26 @@ import RestaurantList from './components/restaurant_list';
 
 class App extends Component {
   state = {
-    restaurants: JSON
+    restaurants: JSON,
+    filtered: []
   }
 
   getKeyword = (event) => {
-    console.log(event.target.value)
+    //console.log(event.target.value);
+    let keyword = event.target.value;
+    let filtered = this.state.restaurants.filter((item) => {
+      return item.restaurantName.indexOf(keyword) > -1;
+    });
+    this.setState({
+      filtered
+    })
+    console.log(filtered);
   }
   render(){
     return(
       <div>
         <Header keywords={this.getKeyword}/>
-      < RestaurantList restaurants={this.state.restaurants}>
+      < RestaurantList restaurants={this.state.filtered.length === 0 ? this.state.restaurants : this.state.filtered}>
         <h3>Restaurant list are: </h3>
       </RestaurantList>
       </div>
