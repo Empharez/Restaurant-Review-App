@@ -21,8 +21,10 @@ const RestaurantItem = ({restaurant}) => {
 
     return(
         <div {...restaurant_item} {...item_color}>
-            <h3>{restaurant.restaurantName}</h3>
+            <h3>{restaurant.restaurantName}
+            <i className="fa fa-star"></i></h3>
             <div>{restaurant.address}</div>
+            
         </div>
     )
 

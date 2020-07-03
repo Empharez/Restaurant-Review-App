@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import 'font-awesome/css/font-awesome.css';
+import Map from './components/map';
 
 import JSON from './restaurants.json'
 //components
@@ -26,10 +27,14 @@ class App extends Component {
     console.log(filtered);
   }
   render(){
+    
+    let restaurantFiltered = this.state.filtered;
+    let restaurantWhole = this.state.restaurants;
     return(
       <div>
         <Header keywords={this.getKeyword}/>
-      < RestaurantList restaurants={this.state.filtered.length === 0 ? this.state.restaurants : this.state.filtered}>
+        <Map/>
+      < RestaurantList restaurants={restaurantFiltered.length === 0 ? restaurantWhole : restaurantFiltered}>
         <h3>Restaurant list are: </h3>
       </RestaurantList>
       </div>
