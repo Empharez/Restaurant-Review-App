@@ -3,10 +3,11 @@ import RestaurantItem from './restaurant_list_item'
 //import classes from '../css/styles.css'
 
 const RestaurantList = (props) => {
-    const restaurants = props.restaurants.map((restaurant) => {
+    const restaurants = props.restaurants.map((restaurant, i) => {
         return(
-            <RestaurantItem restaurant={restaurant}/>
-            
+            <div className='sidebar'>
+            <RestaurantItem restaurant={restaurant} onClick={props.onClick} key={i}/>
+            </div>
         )
     });
     return(

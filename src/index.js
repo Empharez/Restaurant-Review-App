@@ -3,14 +3,17 @@ import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.css';
 import MapContainer from './components/mapp';
 
-import JSON from './restaurants.json';
+
+import json from './restaurants.json';
 //components
 import Header from './components/header';
-import RestaurantList from './components/restaurant_list';
+import Sidebar from './components/sidebar';
+
+
 
 class App extends Component {
 	state = {
-		restaurants: JSON,
+		restaurants: [],
 		filtered: []
 	};
 
@@ -25,19 +28,38 @@ class App extends Component {
 		});
 		console.log(filtered);
 	};
+	componentDidMount() {
+		if (navigator.geolocation) {
+		  navigator.geolocation.watchPosition(function(position) {
+			  console.log(position);
+			console.log("Latitude is :", position.coords.latitude);
+			console.log("Longitude is :", position.coords.longitude);
+		  });
+		}
+	  }
+
+	updateRestaurantList (restaurants){
+		{/*let filtered = restaurants.filter(item => {
+			return item.restaurantName.indexOf(keyword) > -1;
+		});*/}
+		this.setState({
+			restaurants: restaurants,
+			filtered: restaurants
+		})
+
+	}
 	render() {
 		let restaurantFiltered = this.state.filtered;
-		let restaurantWhole = this.state.restaurants;
+		{/*let restaurantWhole = this.state.restaurants;*/}
 		return (
 			<div>
 				<Header keywords={this.getKeyword} />
-				<div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
-					<MapContainer />
-					<RestaurantList
-						restaurants={restaurantFiltered.length === 0 ? restaurantWhole : restaurantFiltered}>
-						<h3>Restaurant list are: </h3>
-					</RestaurantList>
-				</div>
+				
+				<MapContainer restaurants={restaurantFiltered} updateCallback={this.updateRestaurantList.bind(this)}>
+					
+				</MapContainer>
+				
+					
 			</div>
 		);
 	}

@@ -1,8 +1,15 @@
 import React from 'react';
 import {css} from 'glamor';
+import Ratings from './ratings';
 
 const RestaurantItem = ({restaurant}) => {
-
+    let container = css({
+            height: '100%',
+            overflow: 'auto',
+            paddingBottom: '60px',
+            margin: '0'
+          
+    })
     let restaurant_item = css({
         padding: '20px',
         boxSizing: 'border-box',
@@ -20,9 +27,10 @@ const RestaurantItem = ({restaurant}) => {
 
 
     return(
-        <div {...restaurant_item} {...item_color}>
-            <h3>{restaurant.restaurantName}
-            <i className="fa fa-star"></i></h3>
+        <div {...restaurant_item} {...item_color} {...container}>
+            <h3>{restaurant.restaurantName}</h3>
+            <span>{restaurant.ratings/5}</span>
+            <Ratings/>
             <div>{restaurant.address}</div>
             
         </div>
