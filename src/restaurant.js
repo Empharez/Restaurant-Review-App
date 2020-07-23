@@ -1,4 +1,3 @@
-import RestaurantList from "./components/restaurant_list";
 class Restaurant{
     constructor(restaurantName, address, latitude, longitude){
         this.restaurantName = restaurantName;

@@ -5,7 +5,6 @@ import Ratings from './ratings';
 const RestaurantItem = ({restaurant}) => {
     let container = css({
             height: '100%',
-            overflow: 'auto',
             paddingBottom: '60px',
             margin: '0'
           
@@ -28,17 +27,18 @@ const RestaurantItem = ({restaurant}) => {
 
     return(
         <div {...restaurant_item} {...item_color} {...container}>
-            <h3>{restaurant.restaurantName}</h3>
+            <h1>{restaurant.restaurantName}</h1>
             <span>{restaurant.ratings/5}</span>
             <Ratings/>
-            <div>{restaurant.address}</div>
+            <p>{restaurant.address}</p>
+          
             
         </div>
     )
 
 }
 
-export default RestaurantItem
+export default RestaurantItem;
 
 
             

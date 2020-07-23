@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.css';
 import MapContainer from './components/mapp';
 
-
-import json from './restaurants.json';
 //components
 import Header from './components/header';
 import Sidebar from './components/sidebar';
@@ -39,23 +37,28 @@ class App extends Component {
 	  }
 
 	updateRestaurantList (restaurants){
-		{/*let filtered = restaurants.filter(item => {
+		/*{let filtered = restaurants.filter(item => {
 			return item.restaurantName.indexOf(keyword) > -1;
-		});*/}
+		});}*/
 		this.setState({
 			restaurants: restaurants,
 			filtered: restaurants
 		})
-
 	}
 	render() {
 		let restaurantFiltered = this.state.filtered;
-		{/*let restaurantWhole = this.state.restaurants;*/}
+		let restaurantWhole = this.state.restaurants;
 		return (
 			<div>
 				<Header keywords={this.getKeyword} />
+				{/*<Sidebar restaurants={restaurantFiltered} />*/}
+				<Sidebar
+					title={'Restaurants'}
+					restaurants={restaurantWhole}
+            	/>
 				
 				<MapContainer restaurants={restaurantFiltered} updateCallback={this.updateRestaurantList.bind(this)}>
+				
 					
 				</MapContainer>
 				

@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
 const RatingIcon = (props) => (<span>★</span>);
 
-class Rating extends React.Component {
+class Rating extends Component {
   render() {
     // ...
     const {percentage} = this.props;
@@ -31,4 +31,4 @@ class Rating extends React.Component {
   }
 }
 
-export default Rating
+export default Rating;

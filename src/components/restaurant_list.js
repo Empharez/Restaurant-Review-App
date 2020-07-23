@@ -5,8 +5,10 @@ import RestaurantItem from './restaurant_list_item'
 const RestaurantList = (props) => {
     const restaurants = props.restaurants.map((restaurant, i) => {
         return(
-            <div className='sidebar'>
-            <RestaurantItem restaurant={restaurant} onClick={props.onClick} key={i}/>
+            <div>
+            <RestaurantItem restaurant={restaurant} onClick={props.onClick} 
+            
+            key={i}/>
             </div>
         )
     });

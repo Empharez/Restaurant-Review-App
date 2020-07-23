@@ -2,6 +2,7 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import React, { Component } from 'react';
 import {searchNearby} from '../utils/googleApiHelpers';
 import Restaurant from '../restaurant';
+import { PropTypes } from 'prop-types';
 
 class MapContainer extends Component{
     state = {
@@ -19,17 +20,15 @@ class MapContainer extends Component{
         searchNearby(google, map, opts)
           .then((results, pagination) => {
             console.log(results);
-            this.props.updateCallback(results.map((place) => {
-                return new Restaurant(place.name, place.vicinity, place.geometry.position.lat, place.geometry.lng);
-            }))
+            console.log('callback---', this.props.updateCallback(results.map((place) => {
+              
+                return new Restaurant(place.name, place.vicinity, place.geometry.location.lat(), place.geometry.location.lng());
+            })))
             {/*this.setState({
               places: results,
               pagination
             })*/}
-          }).catch((status, result) => {
-            // There was an error
-          })
-      }
+          })}
       
     render(){
         const mapStyles = {
@@ -74,7 +73,11 @@ class MapContainer extends Component{
     }
 
 }
+
+MapContainer.propTypes = {
+  updateCallback: PropTypes.func
+}
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDguopZPGXR2U8RGWIvmDOyXAgqjWTZswg',
+    apiKey: 'AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8',
     //libraries= ['places']
   })(MapContainer);
