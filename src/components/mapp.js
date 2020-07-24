@@ -40,7 +40,7 @@ class MapContainer extends Component{
             return <Marker position={{lat: restaurant.lat , lng: restaurant.long}} key={i}
             onClick={this.onMarkerClick} ></Marker>
         });*/}
-
+        
         
         return(
             <div>
