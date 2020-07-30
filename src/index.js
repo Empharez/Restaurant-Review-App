@@ -19,6 +19,7 @@ class App extends Component {
 	state = {
 		restaurants: [],
 		filtered: [],
+		ratingFilter: [],
 		restaurant: null
 	};
 
@@ -33,6 +34,16 @@ class App extends Component {
 		});
 		console.log(filtered);
 	};
+
+	getRatings = event => {
+		let minRatings = event.target.value;
+		let maxRatings = event.targte.value;
+		let ratingFilter = this.state.restaurants.filter(restaurant=> {
+			return restaurant.ratings.indexOf(minRatings) > -1;
+		});
+		this.setState({ratingFilter});
+		console.log(ratingFilter);
+	}
 	componentDidMount() {
 		if (navigator.geolocation) {
 			navigator.geolocation.watchPosition(function (position) {
@@ -58,7 +69,7 @@ class App extends Component {
 		// console.log(restaurant);
 	}
 	render() {
-		// let restaurantFiltered = this.state.filtered;
+		let restaurantFiltered = this.state.filtered;
 		// let restaurantWhole = this.state.restaurants;
 		const { restaurant, restaurants, filtered } = this.state;
 		return (
@@ -70,6 +81,7 @@ class App extends Component {
 						title={restaurant?.restaurantName || 'Restaurants'}
 						restaurants={restaurants}
 						restaurant={restaurant}
+						restaurants={restaurantFiltered}
 					/>
 
 					<MapContainer

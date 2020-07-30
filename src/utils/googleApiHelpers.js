@@ -20,7 +20,7 @@ export function searchNearby(google, map, request) {
   
       service.getDetails(request, (place, status) => {
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
-          return reject(status);
+          reject(status);
         } else {
           resolve(place);
         }
