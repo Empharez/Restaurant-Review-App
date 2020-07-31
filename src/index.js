@@ -20,7 +20,9 @@ class App extends Component {
 		restaurants: [],
 		filtered: [],
 		ratingFilter: [],
-		restaurant: null
+		restaurant: null,
+		min: null,
+		max: null
 	};
 
 	getKeyword = event => {
@@ -35,15 +37,14 @@ class App extends Component {
 		console.log(filtered);
 	};
 
-	getRatings = event => {
-		let minRatings = event.target.value;
-		let maxRatings = event.targte.value;
-		let ratingFilter = this.state.restaurants.filter(restaurant=> {
-			return restaurant.ratings.indexOf(minRatings) > -1;
-		});
-		this.setState({ratingFilter});
+	getRatings = () => {
+		const { min, max } = this.state;
+		let ratingFilter = this.state.restaurants.filter(
+			restaurant => restaurant.ratings.length >= min && restaurant.ratings.length <= max
+		);
+		this.setState({ ratingFilter });
 		console.log(ratingFilter);
-	}
+	};
 	componentDidMount() {
 		if (navigator.geolocation) {
 			navigator.geolocation.watchPosition(function (position) {
@@ -68,20 +69,30 @@ class App extends Component {
 		this.setState({ restaurant });
 		// console.log(restaurant);
 	}
+
+	onChange(e) {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
+
 	render() {
-		let restaurantFiltered = this.state.filtered;
+		// let restaurantFiltered = this.state.filtered;
 		// let restaurantWhole = this.state.restaurants;
 		const { restaurant, restaurants, filtered } = this.state;
 		return (
 			<div style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-				<Header keywords={this.getKeyword} />
+				<Header
+					getRatings={this.getRatings.bind(this)}
+					onChange={this.onChange.bind(this)}
+					keywords={this.getKeyword}
+				/>
 				{/*<Sidebar restaurants={restaurantFiltered} />*/}
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
-						restaurants={restaurants}
+						restaurants={filtered.length > 0 ? filtered : restaurants}
 						restaurant={restaurant}
-						restaurants={restaurantFiltered}
 					/>
 
 					<MapContainer

@@ -32,12 +32,11 @@ class MapContainer extends Component {
 					})
 				)
 			);
-			{
-				/*this.setState({
+
+			/*this.setState({
               places: results,
               pagination
             })*/
-			}
 		});
 	}
 
@@ -47,12 +46,11 @@ class MapContainer extends Component {
 			width: '70%',
 			height: '100%'
 		};
-		{
-			/*const markers = this.props.restaurants.map((restaurant, i) => {
+
+		/*const markers = this.props.restaurants.map((restaurant, i) => {
             return <Marker position={{lat: restaurant.lat , lng: restaurant.long}} key={i}
             onClick={this.onMarkerClick} ></Marker>
         });*/
-		}
 
 		return (
 			<div>

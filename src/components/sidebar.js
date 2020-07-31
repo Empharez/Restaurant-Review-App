@@ -1,4 +1,4 @@
-import React, { Component, PropTypes as T } from 'react';
+import React, { Component } from 'react';
 import RestaurantList from './restaurant_list';
 
 class Sidebar extends Component {
