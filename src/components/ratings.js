@@ -6,9 +6,9 @@ const RatingIcon = (props) => (<span>★</span>);
 class Rating extends Component {
   render() {
     // ...
-    const {percentage} = this.props;
+    const {stars} = this.props;
     const style = {
-      width: `${(percentage || 0) * 100}%`
+      width: `${stars / 5 * 100}%`
     }
     return (
         <div className='sprite'>

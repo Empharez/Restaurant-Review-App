@@ -40,7 +40,7 @@ class App extends Component {
 	getRatings = () => {
 		const { min, max } = this.state;
 		let ratingFilter = this.state.restaurants.filter(
-			restaurant => restaurant.ratings.length >= min && restaurant.ratings.length <= max
+			restaurant => restaurant.getRating() >= min && restaurant.getRating() <= max
 		);
 		this.setState({ ratingFilter });
 		console.log(ratingFilter);
@@ -91,7 +91,7 @@ class App extends Component {
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
-						restaurants={filtered.length > 0 ? filtered : restaurants}
+						restaurants={filtered.length > 0 ? filtered : restaurants}//
 						restaurant={restaurant}
 					/>
 

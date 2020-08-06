@@ -26,8 +26,8 @@ const RestaurantItem = ({ restaurant }) => {
 	return (
 		<div {...restaurant_item} {...item_color} {...container}>
 			<h1>{restaurant?.restaurantName}</h1>
-			<span>{restaurant?.ratings / 5}</span>
-			<Ratings />
+			<span>{restaurant?.getRating()}</span>
+			<Ratings stars={restaurant.getRating()} />
 			<p>{restaurant?.address}</p>
 		</div>
 	);

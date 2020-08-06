@@ -12,9 +12,11 @@ class MapContainer extends Component {
 
 	onReady(mapProps, map) {
 		const { google } = this.props;
+		//console.log(map.getBounds());
 		const opts = {
 			location: map.center,
 			radius: '1000',
+			location: map.center,
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
@@ -27,7 +29,10 @@ class MapContainer extends Component {
 							place.name,
 							place.vicinity,
 							place.geometry.location.lat(),
-							place.geometry.location.lng()
+							place.geometry.location.lng(),
+							place.rating? place.rating: 0 ,
+							place.user_ratings_total? place.user_ratings_total: 0,
+							place.place_id
 						);
 					})
 				)
