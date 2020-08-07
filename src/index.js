@@ -30,7 +30,7 @@ class App extends Component {
 		this.setState({ filtered: null });
 		let keyword = event.target.value;
 		let filtered = this.state.restaurants.filter(item => {
-			return item.restaurantName.indexOf(keyword) > -1;
+			return item.restaurantName.substring(0, keyword.length).toLowerCase() === keyword;
 		});
 		this.setState({
 			filtered
