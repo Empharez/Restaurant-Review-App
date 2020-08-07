@@ -2,7 +2,7 @@ class Restaurant {
 	constructor(restaurantName, address, latitude, longitude, globalRating, numberOfRating, placeId) {
 		this.restaurantName = restaurantName;
 		this.address = address;
-		this.ratings = null;
+		this.ratings = [];
 		this.position = {
 			latitude: latitude,
 			longitude: longitude

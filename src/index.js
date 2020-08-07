@@ -6,6 +6,7 @@ import MapContainer from './components/mapp';
 //components
 import Header from './components/header';
 import Sidebar from './components/sidebar';
+import RestaurantModal from './components/modal';
 
 const styles = {
 	position: 'relative',
@@ -19,6 +20,7 @@ class App extends Component {
 	state = {
 		restaurants: [],
 		filtered: null,
+		showModal: false,
 		// ratingFilter: [],
 		restaurant: null,
 		min: null,
@@ -30,7 +32,11 @@ class App extends Component {
 		this.setState({ filtered: null });
 		let keyword = event.target.value;
 		let filtered = this.state.restaurants.filter(item => {
-			return item.restaurantName.substring(0, keyword.length).toLowerCase() === keyword;
+			let names = item.restaurantName.split(' ');
+			return (
+				names[0].substring(0, keyword.length).toLowerCase() === keyword ||
+				names[1]?.substring(0, keyword.length).toLowerCase() === keyword
+			);
 		});
 		this.setState({
 			filtered
@@ -83,13 +89,18 @@ class App extends Component {
 	render() {
 		// let restaurantFiltered = this.state.filtered;
 		// let restaurantWhole = this.state.restaurants;
-		const { restaurant, restaurants, filtered } = this.state;
+		const { restaurant, restaurants, filtered, showModal } = this.state;
 		return (
 			<div style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
+				<RestaurantModal
+					toggleModal={() => this.setState({ showModal: !this.state.showModal })}
+					showModal={showModal}
+				/>
 				<Header
 					getRatings={this.getRatings.bind(this)}
 					onChange={this.onChange.bind(this)}
 					keywords={this.getKeyword}
+					toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 				/>
 				{/*<Sidebar restaurants={restaurantFiltered} />*/}
 				<div style={styles}>
