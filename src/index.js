@@ -18,8 +18,8 @@ const styles = {
 class App extends Component {
 	state = {
 		restaurants: [],
-		filtered: [],
-		ratingFilter: [],
+		filtered: null,
+		// ratingFilter: [],
 		restaurant: null,
 		min: null,
 		max: null
@@ -27,6 +27,7 @@ class App extends Component {
 
 	getKeyword = event => {
 		//console.log(event.target.value);
+		this.setState({ filtered: null });
 		let keyword = event.target.value;
 		let filtered = this.state.restaurants.filter(item => {
 			return item.restaurantName.indexOf(keyword) > -1;
@@ -38,11 +39,12 @@ class App extends Component {
 	};
 
 	getRatings = () => {
-		const { min, max } = this.state;
-		let ratingFilter = this.state.restaurants.filter(
-			restaurant => restaurant.getRating() >= min && restaurant.getRating() <= max
+		this.setState({ filtered: null });
+		const { min, max, restaurants } = this.state;
+		let ratingFilter = restaurants.filter(
+			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
 		);
-		this.setState({ ratingFilter });
+		this.setState({ filtered: ratingFilter });
 		console.log(ratingFilter);
 	};
 	componentDidMount() {
@@ -59,10 +61,12 @@ class App extends Component {
 		/*{let filtered = restaurants.filter(item => {
 			return item.restaurantName.indexOf(keyword) > -1;
 		});}*/
+		// restaurants.map(restaurant => (restaurant.ratings = restaurant.getRating()));
 		this.setState({
-			restaurants: restaurants,
-			filtered: restaurants
+			restaurants: restaurants
+			// filtered: restaurants
 		});
+		console.log(restaurants);
 	}
 
 	getDetails(restaurant) {
@@ -91,7 +95,7 @@ class App extends Component {
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
-						restaurants={filtered.length > 0 ? filtered : restaurants}//
+						restaurants={filtered !== null ? filtered : restaurants} //
 						restaurant={restaurant}
 					/>
 

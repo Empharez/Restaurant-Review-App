@@ -16,7 +16,6 @@ class MapContainer extends Component {
 		const opts = {
 			location: map.center,
 			radius: '1000',
-			location: map.center,
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
@@ -30,8 +29,8 @@ class MapContainer extends Component {
 							place.vicinity,
 							place.geometry.location.lat(),
 							place.geometry.location.lng(),
-							place.rating? place.rating: 0 ,
-							place.user_ratings_total? place.user_ratings_total: 0,
+							place.rating ? place.rating : 0,
+							place.user_ratings_total ? place.user_ratings_total : 0,
 							place.place_id
 						);
 					})
@@ -66,20 +65,21 @@ class MapContainer extends Component {
 					onReady={this.onReady.bind(this)}
 					visible={true}
 					initialCenter={{ lat: 6.50275, lng: 3.37053 }}>
-					{this.props.restaurants.map((restaurant, i) => {
-						// console.log(restaurant);
-						return (
-							<Marker
-								key={i}
-								name={restaurant.name}
-								position={{
-									lat: restaurant.position.latitude,
-									lng: restaurant.position.longitude
-								}}
-								onClick={() => this.props.onMarkerClick(restaurant)}
-							/>
-						);
-					})}
+					{this.props.restaurants &&
+						this.props.restaurants.map((restaurant, i) => {
+							// console.log(restaurant);
+							return (
+								<Marker
+									key={i}
+									name={restaurant.name}
+									position={{
+										lat: restaurant.position.latitude,
+										lng: restaurant.position.longitude
+									}}
+									onClick={() => this.props.onMarkerClick(restaurant)}
+								/>
+							);
+						})}
 				</Map>
 			</div>
 		);
