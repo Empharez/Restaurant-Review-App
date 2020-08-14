@@ -11,13 +11,8 @@ class Sidebar extends Component {
 	render() {
 		return (
 			<div className="heading">
-				<div className="add-restaurant">
-					<button onClick={this.props.toggleModal}>+</button>
-					<div>
-						<h4>Add Restaurant</h4>
-					</div>
-				</div>
 				<RestaurantList
+					toggleModal={this.props.toggleModal}
 					restaurants={this.props.restaurants}
 					onClick={this.onClick.bind(this)}
 				/>

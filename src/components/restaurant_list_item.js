@@ -2,13 +2,12 @@ import React from 'react';
 import { css } from 'glamor';
 import Ratings from './ratings';
 
-const RestaurantItem = ({ restaurant }) => {
+const RestaurantItem = ({ restaurant, toggleModal }) => {
 	let container = css({
+		background: '#073b4c',
 		height: '100%',
 		paddingBottom: '60px',
-		margin: '0'
-	});
-	let restaurant_item = css({
+		margin: '0',
 		padding: '20px',
 		boxSizing: 'border-box',
 		borderBottom: '1px solid #024249',
@@ -20,13 +19,13 @@ const RestaurantItem = ({ restaurant }) => {
 			color: '#16817a'
 		}
 	});
-	let item_color = css({
-		background: '#073b4c'
-	});
 
 	return (
-		<div {...restaurant_item} {...item_color} {...container}>
-			<h3>{restaurant?.restaurantName}</h3>
+		<div {...container}>
+			<div>
+				<h3>{restaurant?.restaurantName}</h3>
+				<button onClick={toggleModal}>+</button>
+			</div>
 			<span>{restaurant?.globalRating}</span>
 			<Ratings stars={restaurant.globalRating} />
 			<p>{restaurant?.address}</p>

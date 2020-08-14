@@ -2,10 +2,10 @@ import React from 'react';
 import RestaurantItem from './restaurant_list_item';
 //import classes from '../css/styles.css'
 
-const RestaurantList = ({ children, restaurant, restaurants, onClick }) => {
+const RestaurantList = ({ children, toggleModal, restaurant, restaurants, onClick }) => {
 	const list = restaurants.map((restaurant, i) => (
 		<div>
-			<RestaurantItem restaurant={restaurant} onClick={onClick} key={i} />
+			<RestaurantItem toggleModal={toggleModal} restaurant={restaurant} onClick={onClick} key={i} />
 		</div>
 	));
 	return (
@@ -13,7 +13,7 @@ const RestaurantList = ({ children, restaurant, restaurants, onClick }) => {
 			{children}
 			{restaurant ? (
 				<div>
-					<RestaurantItem restaurant={restaurant} onClick={onClick} />
+					<RestaurantItem toggleModal={toggleModal} restaurant={restaurant} onClick={onClick} />
 				</div>
 			) : (
 				list
