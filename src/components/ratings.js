@@ -11,7 +11,7 @@ class Rating extends Component {
 		};
 		let ratings = [];
 		for (let i = 0; i < stars; i++) {
-			ratings.push(<RatingIcon />);
+			ratings.push(<RatingIcon key={i}/>);
 		}
 		return (
 			<div className="sprite">

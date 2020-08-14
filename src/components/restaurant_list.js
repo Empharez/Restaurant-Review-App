@@ -4,8 +4,8 @@ import RestaurantItem from './restaurant_list_item';
 
 const RestaurantList = ({ children, toggleModal, restaurant, restaurants, onClick }) => {
 	const list = restaurants.map((restaurant, i) => (
-		<div>
-			<RestaurantItem toggleModal={toggleModal} restaurant={restaurant} onClick={onClick} key={i} />
+		<div key={i}>
+			<RestaurantItem toggleModal={toggleModal} restaurant={restaurant} onClick={onClick}  />
 		</div>
 	));
 	return (
