@@ -4,16 +4,23 @@ import Modal from './modal';
 export default function AddModal({ showModal, toggleModal }) {
 	return (
 		showModal && (
-			<Modal title={'Add a Restaurant'} toggleModal={toggleModal}>
+			<Modal title={'Submit your review'} toggleModal={toggleModal}>
 				<div className="modal-body">
 					<div>
-						<label for="name">Restaurant Name:</label>
-						<input type="text" />
+						<textarea name="review" rows="10" cols="60"></textarea>
 					</div>
 					<div>
-						<label for="name">Address:</label>
-						<input type="text" />
+						<label for="rating">Rate:</label>
+						<select name="rating">
+							<option value="">Rate restaurant</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
 					</div>
+					<input type="submit" value="Submit" />
 				</div>
 			</Modal>
 		)
