@@ -4,6 +4,7 @@ import Ratings from './ratings';
 
 const RestaurantItem = ({ restaurant, toggleModal }) => {
 	let container = css({
+		position: 'relative',
 		background: '#073b4c',
 		height: '100%',
 		paddingBottom: '60px',
