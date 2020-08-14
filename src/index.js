@@ -6,7 +6,8 @@ import MapContainer from './components/mapp';
 //components
 import Header from './components/header';
 import Sidebar from './components/sidebar';
-import RestaurantModal from './components/modal';
+import AddModal from './components/AddModal';
+import RestaurantModal from './components/RestaurantModal';
 
 const styles = {
 	position: 'relative',
@@ -21,6 +22,7 @@ class App extends Component {
 		restaurants: [],
 		filtered: null,
 		showModal: false,
+		showRestaurantModal: false,
 		// ratingFilter: [],
 		restaurant: null,
 		min: null,
@@ -76,7 +78,7 @@ class App extends Component {
 	}
 
 	getDetails(restaurant) {
-		this.setState({ restaurant });
+		this.setState({ showRestaurantModal: !this.state.showRestaurantModal, restaurant });
 		// console.log(restaurant);
 	}
 
@@ -91,27 +93,40 @@ class App extends Component {
 		// let restaurantWhole = this.state.restaurants;
 		const { restaurant, restaurants, filtered, showModal } = this.state;
 		return (
-			<div style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-				<RestaurantModal
+			<div
+				style={{
+					position: 'relative',
+					display: 'flex',
+					flexDirection: 'column',
+					width: '100%',
+					height: '100%'
+				}}>
+				<AddModal
 					toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 					showModal={showModal}
+				/>
+				<RestaurantModal
+					toggleRestaurantModal={() =>
+						this.setState({ showRestaurantModal: !this.state.showRestaurantModal })
+					}
+					showRestaurantModal={this.state.showRestaurantModal}
+					restaurant={restaurant}
 				/>
 				<Header
 					getRatings={this.getRatings.bind(this)}
 					onChange={this.onChange.bind(this)}
 					keywords={this.getKeyword}
-					toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 				/>
 				{/*<Sidebar restaurants={restaurantFiltered} />*/}
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
 						restaurants={filtered !== null ? filtered : restaurants} //
-						restaurant={restaurant}
+						toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 					/>
 
 					<MapContainer
-						restaurants={filtered}
+						restaurants={filtered ? filtered : restaurants}
 						updateCallback={this.updateRestaurantList.bind(this)}
 						onMarkerClick={this.getDetails.bind(this)}
 					/>

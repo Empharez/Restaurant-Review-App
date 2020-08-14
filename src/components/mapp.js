@@ -60,26 +60,23 @@ class MapContainer extends Component {
 			<div>
 				<Map
 					google={this.props.google}
-					zoom={14}
+					zoom={15}
 					style={mapStyles}
 					onReady={this.onReady.bind(this)}
 					visible={true}
 					initialCenter={{ lat: 6.50275, lng: 3.37053 }}>
 					{this.props.restaurants &&
-						this.props.restaurants.map((restaurant, i) => {
-							// console.log(restaurant);
-							return (
-								<Marker
-									key={i}
-									name={restaurant.name}
-									position={{
-										lat: restaurant.position.latitude,
-										lng: restaurant.position.longitude
-									}}
-									onClick={() => this.props.onMarkerClick(restaurant)}
-								/>
-							);
-						})}
+						this.props.restaurants.map((restaurant, i) => (
+							<Marker
+								key={i}
+								name={restaurant.name}
+								position={{
+									lat: restaurant.position.latitude,
+									lng: restaurant.position.longitude
+								}}
+								onClick={() => this.props.onMarkerClick(restaurant)}
+							/>
+						))}
 				</Map>
 			</div>
 		);
