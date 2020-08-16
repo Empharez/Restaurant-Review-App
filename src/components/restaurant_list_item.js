@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from 'glamor';
 import Ratings from './ratings';
 
-const RestaurantItem = ({ restaurant, toggleModal }) => {
+const RestaurantItem = ({ restaurant, item, setItem, toggleModal }) => {
 	let container = css({
 		position: 'relative',
 		background: '#073b4c',
@@ -21,16 +21,37 @@ const RestaurantItem = ({ restaurant, toggleModal }) => {
 		}
 	});
 
+	if (item) {
+		restaurant = item;
+	}
+
 	return (
-		<div {...container}>
-			<div>
-				<h3>{restaurant?.restaurantName}</h3>
-				<button onClick={toggleModal}>+</button>
+		<>
+			{/* <AddModal
+				item={item}
+				setItem={setItem}
+				toggleModal={toggleModal}
+				showModal={showModal}
+				// onChange={onChange}
+				// addRating={addRating}
+				// review={review}
+			/> */}
+			<div {...container}>
+				<div>
+					<h3>{restaurant?.restaurantName}</h3>
+					<button
+						onClick={() => {
+							toggleModal();
+							setItem(restaurant);
+						}}>
+						+
+					</button>
+				</div>
+				<span>{restaurant?.globalRating}</span>
+				<Ratings stars={restaurant.globalRating} />
+				<p>{restaurant?.address}</p>
 			</div>
-			<span>{restaurant?.globalRating}</span>
-			<Ratings stars={restaurant.globalRating} />
-			<p>{restaurant?.address}</p>
-		</div>
+		</>
 	);
 };
 

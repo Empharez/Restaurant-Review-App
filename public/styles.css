@@ -40,9 +40,7 @@ header input {
 	height: 100%;
 	overflow: scroll;
 	background-color: #073b4c;
-	position: relative;
-	flex: 1;
-	z-index: 0;
+	display: flex;
 }
 
 .filter {
