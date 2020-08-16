@@ -19,9 +19,7 @@ class MapContainer extends Component {
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
-			console.log(results);
-			console.log(
-				'callback---',
+			
 				this.props.updateCallback(
 					results.map(place => {
 						return new Restaurant(
@@ -35,7 +33,6 @@ class MapContainer extends Component {
 						);
 					})
 				)
-			);
 
 			/*this.setState({
               places: results,
