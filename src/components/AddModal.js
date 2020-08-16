@@ -9,8 +9,6 @@ export default function AddModal({ showModal, toggleModal, item, setItem }) {
 
 	const { stars, comment } = review;
 	const onChange = e => {
-		console.log(e.target.name);
-		console.log(e.target.value);
 		setReview({
 			...review,
 			[e.target.name]: e.target.value
@@ -22,9 +20,10 @@ export default function AddModal({ showModal, toggleModal, item, setItem }) {
 			stars,
 			comment
 		});
+		console.log(item.globalRating * item.numberOfRating + parseInt(stars));
 
 		item.globalRating = (
-			Math.round(item.globalRating * item.numberOfRating + stars) /
+			Math.round(item.globalRating * item.numberOfRating + parseInt(stars)) /
 			(item.numberOfRating + 1)
 		).toFixed(2);
 
