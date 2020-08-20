@@ -15,9 +15,12 @@ export default function RestaurantModal({
 					&fov=80&heading=70&pitch=0
 					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}/> */}
 
-					<img src={`https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${restaurant.address}
+					<img
+						src={`https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${restaurant.address}
 					&fov=80&heading=70&pitch=0
-					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}/>
+					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}
+						alt="restaurant"
+					/>
 					<span>{restaurant?.globalRating}</span>
 					<Ratings stars={restaurant.globalRating} />
 					<p>{restaurant?.address}</p>

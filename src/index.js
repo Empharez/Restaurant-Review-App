@@ -21,8 +21,9 @@ class App extends Component {
 		filtered: null,
 		showModal: false,
 		showRestaurantModal: false,
+		showNewRestaurantModal: false,
 		// ratingFilter: [],
-		restaurant: null,
+		restaurant: [],
 		min: null,
 		max: null
 		// review: {
@@ -30,46 +31,6 @@ class App extends Component {
 		// 	comment: ''
 		// }
 	};
-
-	// onChangeReview(e) {
-	// 	console.log(e.target.name);
-	// 	console.log(e.target.value);
-	// 	this.setState({
-	// 		review: { ...this.state.review, [e.target.name]: e.target.value }
-	// 	});
-	// }
-
-	// addRating(stars, comment) {
-	// 	const {
-	// 		restaurant: { ratings, numberOfRating, globalRating },
-	// 		showModal,
-	// 		review
-	// 	} = this.state;
-
-	// 	const gRating = (
-	// 		Math.round(globalRating * numberOfRating + stars) /
-	// 		(numberOfRating + 1)
-	// 	).toFixed(2);
-
-	// 	this.setState({
-	// 		restaurant: {
-	// 			...this.state.restaurant,
-	// 			ratings: [...ratings, { stars, comment }],
-	// 			globalRating: gRating,
-	// 			numberOfRating: numberOfRating + 1
-	// 		},
-	// 		showModal: !showModal
-	// 	});
-
-	// 	this.setState({
-	// 		review: {
-	// 			stars: null,
-	// 			comment: ''
-	// 		}
-	// 	});
-
-	// 	console.log(this.state.restaurant.numberOfRating);
-	// }
 
 	getKeyword = event => {
 		//console.log(event.target.value);
@@ -107,16 +68,28 @@ class App extends Component {
 		}
 	}
 
-	updateRestaurantList(restaurants) {
+	getRestaurantList(restaurants) {
 		/*{let filtered = restaurants.filter(item => {
 			return item.restaurantName.indexOf(keyword) > -1;
 		});}*/
 		// restaurants.map(restaurant => (restaurant.ratings = restaurant.getRating()));
 		this.setState({
-			restaurants: restaurants
+			restaurants
 			// filtered: restaurants
 		});
-		console.log(restaurants);
+	}
+
+	updateRestaurantList(restaurants) {
+		/*{let filtered = restaurants.filter(item => {
+			return item.restaurantName.indexOf(keyword) > -1;
+		});}*/
+		// restaurants.map(restaurant => (restaurant.ratings = restaurant.getRating()));
+		const arr = [restaurants, ...this.state.restaurants];
+		this.setState(prevState => ({
+			...prevState,
+			restaurants: arr
+			// filtered: restaurants
+		}));
 	}
 
 	getDetails(restaurant) {
@@ -133,7 +106,14 @@ class App extends Component {
 	render() {
 		// let restaurantFiltered = this.state.filtered;
 		// let restaurantWhole = this.state.restaurants;
-		const { restaurant, restaurants, filtered, showModal } = this.state;
+		const {
+			restaurant,
+			restaurants,
+			filtered,
+			showModal,
+			showRestaurantModal,
+			showNewRestaurantModal
+		} = this.state;
 		return (
 			<div
 				style={{
@@ -143,15 +123,9 @@ class App extends Component {
 					width: '100%',
 					height: '100%'
 				}}>
-				{/* <AddModal
-					toggleModal={() => this.setState({ showModal: !this.state.showModal })}
-					showModal={showModal}
-				/> */}
 				<RestaurantModal
-					toggleRestaurantModal={() =>
-						this.setState({ showRestaurantModal: !this.state.showRestaurantModal })
-					}
-					showRestaurantModal={this.state.showRestaurantModal}
+					toggleRestaurantModal={() => this.setState({ showRestaurantModal: !showRestaurantModal })}
+					showRestaurantModal={showRestaurantModal}
 					restaurant={restaurant}
 				/>
 				<Header
@@ -173,8 +147,11 @@ class App extends Component {
 
 					<MapContainer
 						restaurants={filtered ? filtered : restaurants}
-						updateCallback={this.updateRestaurantList.bind(this)}
+						getRestaurant={this.getRestaurantList.bind(this)}
+						updateRestaurant={this.updateRestaurantList.bind(this)}
 						onMarkerClick={this.getDetails.bind(this)}
+						toggleModal={() => this.setState({ showNewRestaurantModal: !showNewRestaurantModal })}
+						showModal={showNewRestaurantModal}
 					/>
 				</div>
 			</div>

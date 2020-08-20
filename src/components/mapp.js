@@ -2,12 +2,17 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import React, { Component } from 'react';
 import { searchNearby } from '../utils/googleApiHelpers';
 import Restaurant from '../restaurant';
+import NewRestaurantModal from './NewRestaurantModal';
 import { PropTypes } from 'prop-types';
 
 class MapContainer extends Component {
 	state = {
 		places: [],
-		pagination: null
+		pagination: null,
+		location: {
+			lat: null,
+			lng: null
+		}
 	};
 
 	onReady(mapProps, map) {
@@ -19,26 +24,41 @@ class MapContainer extends Component {
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
-			
-				this.props.updateCallback(
-					results.map(place => {
-						return new Restaurant(
-							place.name,
-							place.vicinity,
-							place.geometry.location.lat(),
-							place.geometry.location.lng(),
-							place.rating ? place.rating : 0,
-							place.user_ratings_total ? place.user_ratings_total : 0,
-							place.place_id
-						);
-					})
-				)
+			this.props.getRestaurant(
+				results.map(place => {
+					return new Restaurant(
+						place.name,
+						place.vicinity,
+						place.geometry.location.lat(),
+						place.geometry.location.lng(),
+						place.rating ? place.rating : 0,
+						place.user_ratings_total ? place.user_ratings_total : 0,
+						place.place_id
+					);
+				})
+			);
 
 			/*this.setState({
               places: results,
               pagination
             })*/
 		});
+	}
+
+	handleClick(ref, map, event) {
+		console.log(ref);
+		console.log(map);
+		console.log(event.latLng.lat());
+		console.log(event.latLng.lng());
+
+		this.setState({
+			location: {
+				lat: event.latLng.lat(),
+				lng: event.latLng.lng()
+			}
+		});
+
+		this.props.toggleModal();
 	}
 
 	render() {
@@ -55,12 +75,19 @@ class MapContainer extends Component {
 
 		return (
 			<div>
+				<NewRestaurantModal
+					showModal={this.props.showModal}
+					toggleModal={this.props.toggleModal}
+					location={this.state.location}
+					updateRestaurant={this.props.updateRestaurant}
+				/>
 				<Map
 					google={this.props.google}
 					zoom={15}
 					style={mapStyles}
 					onReady={this.onReady.bind(this)}
 					visible={true}
+					onClick={this.handleClick.bind(this)}
 					initialCenter={{ lat: 6.50275, lng: 3.37053 }}>
 					{this.props.restaurants &&
 						this.props.restaurants.map((restaurant, i) => (

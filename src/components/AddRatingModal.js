@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './modal';
 
-export default function AddModal({ showModal, toggleModal, item, setItem }) {
+export default function AddRatingModal({ showModal, toggleModal, item, setItem }) {
 	const [review, setReview] = useState({
 		stars: null,
 		comment: ''
@@ -20,12 +20,9 @@ export default function AddModal({ showModal, toggleModal, item, setItem }) {
 			stars,
 			comment
 		});
-		console.log(item.globalRating * item.numberOfRating + parseInt(stars));
-
-		item.globalRating = (
-			Math.round(item.globalRating * item.numberOfRating + parseInt(stars)) /
-			(item.numberOfRating + 1)
-		).toFixed(2);
+		const rating =
+			(item.globalRating * item.numberOfRating + parseInt(stars)) / (item.numberOfRating + 1);
+		item.globalRating = rating.toFixed(1);
 
 		// setItem({
 		// 	...item,
@@ -42,11 +39,7 @@ export default function AddModal({ showModal, toggleModal, item, setItem }) {
 
 		item.numberOfRating++;
 		setItem(null);
-		console.log(item.numberOfRating);
-		console.log(item.globalRating);
 	};
-
-	// const { stars, comment } = review;
 
 	return (
 		showModal && (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RestaurantItem from './restaurant_list_item';
-import AddModal from './AddModal';
+import AddRatingModal from './AddRatingModal';
 //import classes from '../css/styles.css'
 
 const RestaurantList = ({ children, showModal, toggleModal, restaurants, onClick }) => {
@@ -26,7 +26,7 @@ const RestaurantList = ({ children, showModal, toggleModal, restaurants, onClick
 	});
 	return (
 		<div>
-			<AddModal
+			<AddRatingModal
 				item={item}
 				setItem={setItem}
 				toggleModal={toggleModal}

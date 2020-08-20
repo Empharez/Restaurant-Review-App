@@ -12,7 +12,7 @@ class Restaurant {
 		this.placeId = placeId;
 		if (this.placeId != null && this.globalRating === 0) {
 			this.numberOfRating = 1;
-			this.globalRating = Math.round(Math.random() * 4) + 1;
+			this.globalRating = (Math.random() * 4 + 1).toFixed(1);
 		}
 	}
 
