@@ -16,13 +16,13 @@ const RestaurantList = ({
 
 	const list = restaurants.map((restaurant, i) => {
 		return (
-			<div>
+			<div key={i}>
 				<RestaurantItem
 					showModal={showModal}
 					toggleModal={toggleModal}
 					restaurant={restaurant}
 					onClick={onClick}
-					key={i}
+					
 					item={item}
 					setItem={setItem}
 					toggleRestaurantModal={toggleRestaurantModal}
