@@ -13,6 +13,8 @@ class Sidebar extends Component {
 			<div className="heading">
 				<RestaurantList
 					toggleModal={this.props.toggleModal}
+					toggleRestaurantModal={this.props.toggleRestaurantModal}
+					onShowDetails={this.props.onShowDetails}
 					showModal={this.props.showModal}
 					restaurants={this.props.restaurants}
 					onClick={this.onClick.bind(this)}

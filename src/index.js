@@ -140,6 +140,10 @@ class App extends Component {
 						restaurants={filtered !== null ? filtered : restaurants} //
 						toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 						showModal={showModal}
+						onShowDetails={this.getDetails.bind(this)}
+						toggleRestaurantModal={() =>
+							this.setState({ showRestaurantModal: !showRestaurantModal })
+						}
 						// onChange={this.onChangeReview.bind(this)}
 						// addRating={this.addRating.bind(this)}
 						// review={review}

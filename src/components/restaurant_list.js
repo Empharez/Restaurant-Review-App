@@ -3,7 +3,15 @@ import RestaurantItem from './restaurant_list_item';
 import AddRatingModal from './AddRatingModal';
 //import classes from '../css/styles.css'
 
-const RestaurantList = ({ children, showModal, toggleModal, restaurants, onClick }) => {
+const RestaurantList = ({
+	children,
+	showModal,
+	toggleModal,
+	toggleRestaurantModal,
+	onShowDetails,
+	restaurants,
+	onClick
+}) => {
 	const [item, setItem] = useState(null);
 
 	const list = restaurants.map((restaurant, i) => {
@@ -17,6 +25,8 @@ const RestaurantList = ({ children, showModal, toggleModal, restaurants, onClick
 					key={i}
 					item={item}
 					setItem={setItem}
+					toggleRestaurantModal={toggleRestaurantModal}
+					onShowDetails={onShowDetails}
 					// onChange={onChange}
 					// addRating={addRating}
 					// review={review}
