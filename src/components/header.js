@@ -4,7 +4,7 @@ const Header = ({ onChange, keywords, getRatings }) => {
 		<header>
 			<h1>Restaurants Review App</h1>
 			<div className="filter">
-				<label>Search: </label>
+				<label>Search by Name: </label>
 				<input type="text" onChange={keywords} />
 					<label>
 						Min ratings:
