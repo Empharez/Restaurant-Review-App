@@ -44,11 +44,11 @@ export default function NewRestaurantModal({ showModal, toggleModal, location, u
 			<Modal title={'Add new Restaurant'} toggleModal={toggleModal}>
 				<div className="modal-body">
 					<div>
-						<label htmlFor="name"></label>
+						<label htmlFor="name" className="new">Restaurant Name: </label>
 						<input name="name" type="text" onChange={onChange} value={name} />
 					</div>
 					<div>
-						<label htmlFor="address"></label>
+						<label htmlFor="address" className="new">Restaurant Address: </label>
 						<input name="address" type="text" onChange={onChange} value={address} />
 					</div>
 

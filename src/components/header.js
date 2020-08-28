@@ -4,8 +4,8 @@ const Header = ({ onChange, keywords, getRatings }) => {
 		<header>
 			<h1>Restaurants Review App</h1>
 			<div className="filter">
+				<label>Search: </label>
 				<input type="text" onChange={keywords} />
-				<>
 					<label>
 						Min ratings:
 						<select name="min" onChange={e => onChange(e)}>
@@ -29,8 +29,7 @@ const Header = ({ onChange, keywords, getRatings }) => {
 							<option value="5">5</option>
 						</select>
 					</label>
-					<input type="submit" onSubmit={getRatings} value="Apply" />
-				</>
+					<input type="submit" onSubmit={getRatings} value="Search" />
 			</div>
 		</header>
 	);

@@ -22,7 +22,7 @@ export default function RestaurantModal({
 					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}
 							alt="restaurant"
 						/>
-						<span>{restaurant?.globalRating}</span>
+						<span style={{ margin: '15px', padding:'20px'}}>{restaurant?.globalRating}</span>
 						<Ratings stars={restaurant.globalRating} />
 						<p>{restaurant?.address}</p>
 					</div>
@@ -30,7 +30,7 @@ export default function RestaurantModal({
 						<h3>Reviews</h3>
 						{restaurant.ratings.map(rating => (
 							<div style={{ display: 'flex', alignItems: 'center' }}>
-								<p style={{ marginRight: '15px' }}>{rating.comment}</p>
+								<p style={{ marginRight: '15px', padding:'50px' }}>{rating.comment}</p>
 								<Ratings stars={rating.stars} />
 							</div>
 						))}

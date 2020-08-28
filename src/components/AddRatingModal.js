@@ -55,7 +55,7 @@ export default function AddRatingModal({ showModal, toggleModal, item, setItem }
 					</div>
 					<div>
 						<label for="stars">Rate:</label>
-						<select onChange={onChange} name="stars">
+						<select className="select" onChange={onChange} name="stars">
 							<option value="">Rate restaurant</option>
 							<option value="1">1</option>
 							<option value="2">2</option>

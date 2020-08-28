@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	font-family: 'Architects Daughter', cursive;
 }
 
 header {
@@ -22,7 +24,41 @@ h1 {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent; */
 }
+label {
+	font-size: 20px;
+	color: #fff;
+	padding: 10px;
+}
+select {
+	position: relative;
+	display: flex;
+	width: 50px;
+	height: 30px;
+	line-height: 3;
+	overflow: hidden;
+	border-radius: .25em;
+	flex: 1;
+	padding: 0 .5em;
+	cursor: pointer;
+	font-family: cursive;
+	font-size: small;
+}
+.select {
+	width: 130px;
+	height: 50px;
+	border-radius: .5em;
+}
+input[type=submit]{
+	background-color: #fff;
+	position: relative;
+	width: 100px;
+	height: 30px;
+	border-radius: .25em;
+	text-align: center;
+	box-shadow: none;
 
+}
+ 
 h3 {
 	font-size: 20px;
 	text-transform: capitalize;
@@ -52,7 +88,6 @@ header input {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	overflow-y: scroll;
 }
 
 .sprite {
@@ -117,7 +152,12 @@ header input {
 .restaurant-modal {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 20px;
+	margin: 50px;
+	padding: 30px;
+	
+}
+.new{
+	color: #000;
 }
 
 button {
