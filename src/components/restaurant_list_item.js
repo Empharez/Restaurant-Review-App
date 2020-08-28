@@ -20,8 +20,9 @@ const RestaurantItem = ({
 		boxSizing: 'border-box',
 		borderBottom: '1px solid #024249',
 		transition: 'cubic-bezier(0.215, 0.610, 0.355, 1)',
+		color: '#fff',
 		':hover': {
-			color: '#fff'
+			color: '#93b5e1'
 		},
 		'@media(max-width: 500px)': {
 			color: '#16817a'
