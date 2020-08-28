@@ -1,11 +1,15 @@
 body {
-	margin: 0px;
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
+
 header {
 	background: #118ab2;
 	text-align: center;
 	padding: 10px;
 	display: flex;
+	height: 10vh;
 	align-items: center;
 	justify-content: space-evenly;
 }
@@ -37,16 +41,18 @@ header input {
 }
 
 .heading {
-	height: 100%;
-	overflow: scroll;
+	height: 90vh;
 	background-color: #073b4c;
 	display: flex;
+	overflow-y: scroll;
 }
 
 .filter {
+	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	overflow-y: scroll;
 }
 
 .sprite {
@@ -87,7 +93,7 @@ header input {
 	height: 100%;
 	background: rgba(0, 0, 0, 0.6);
 	z-index: 10;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 }
 
 .modal-main {

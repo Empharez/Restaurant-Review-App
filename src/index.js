@@ -9,10 +9,8 @@ import Sidebar from './components/sidebar';
 import RestaurantModal from './components/RestaurantModal';
 
 const styles = {
-	height: '100vh',
-	width: '100%',
 	display: 'grid',
-	gridTemplateColumns: '28% 70%'
+	gridTemplateColumns: '30% 70%'
 };
 
 class App extends Component {
@@ -25,7 +23,11 @@ class App extends Component {
 		// ratingFilter: [],
 		restaurant: [],
 		min: null,
-		max: null
+		max: null,
+		currentPosition: {
+			lat: null,
+			lng: null
+		}
 		// review: {
 		// 	stars: null,
 		// 	comment: ''
@@ -60,10 +62,18 @@ class App extends Component {
 	};
 	componentDidMount() {
 		if (navigator.geolocation) {
+			let vm = this;
 			navigator.geolocation.watchPosition(function (position) {
 				console.log(position);
 				console.log('Latitude is :', position.coords.latitude);
 				console.log('Longitude is :', position.coords.longitude);
+				const currentPos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+				vm.setState({
+					currentPosition: { ...currentPos }
+				});
 			});
 		}
 	}
@@ -112,16 +122,17 @@ class App extends Component {
 			filtered,
 			showModal,
 			showRestaurantModal,
-			showNewRestaurantModal
+			showNewRestaurantModal,
+			currentPosition
 		} = this.state;
 		return (
 			<div
 				style={{
 					position: 'relative',
+					overflow: 'hidden',
+					height: '100vh',
 					display: 'flex',
-					flexDirection: 'column',
-					width: '100%',
-					height: '100%'
+					flexDirection: 'column'
 				}}>
 				<RestaurantModal
 					toggleRestaurantModal={() => this.setState({ showRestaurantModal: !showRestaurantModal })}
@@ -150,6 +161,7 @@ class App extends Component {
 					/>
 
 					<MapContainer
+						currentPosition={currentPosition}
 						restaurants={filtered ? filtered : restaurants}
 						getRestaurant={this.getRestaurantList.bind(this)}
 						updateRestaurant={this.updateRestaurantList.bind(this)}

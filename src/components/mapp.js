@@ -17,7 +17,8 @@ class MapContainer extends Component {
 
 	onReady(mapProps, map) {
 		const { google } = this.props;
-		//console.log(map.getBounds());
+		// console.log(map.getBounds());
+
 		const opts = {
 			location: map.center,
 			radius: '1000',
@@ -67,14 +68,13 @@ class MapContainer extends Component {
 			width: '70%',
 			height: '100%'
 		};
-
 		/*const markers = this.props.restaurants.map((restaurant, i) => {
             return <Marker position={{lat: restaurant.lat , lng: restaurant.long}} key={i}
             onClick={this.onMarkerClick} ></Marker>
         });*/
 
 		return (
-			<div>
+			<>
 				<NewRestaurantModal
 					showModal={this.props.showModal}
 					toggleModal={this.props.toggleModal}
@@ -86,9 +86,9 @@ class MapContainer extends Component {
 					zoom={15}
 					style={mapStyles}
 					onReady={this.onReady.bind(this)}
-					visible={true}
+					// visible={true}
 					onClick={this.handleClick.bind(this)}
-					initialCenter={{ lat: 6.50275, lng: 3.37053 }}>
+					initialCenter={this.props.currentPosition}>
 					{this.props.restaurants &&
 						this.props.restaurants.map((restaurant, i) => (
 							<Marker
@@ -102,13 +102,17 @@ class MapContainer extends Component {
 							/>
 						))}
 				</Map>
-			</div>
+			</>
 		);
 	}
 }
 
 MapContainer.propTypes = {
-	updateCallback: PropTypes.func
+	updateCallback: PropTypes.func,
+	currentPosition: PropTypes.objectOf({
+		lat: PropTypes.number.isRequired,
+		lng: PropTypes.number.isRequired
+	}).isRequired
 };
 export default GoogleApiWrapper({
 	apiKey: 'AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8'
