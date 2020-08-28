@@ -13,8 +13,8 @@ const RestaurantItem = ({
 	let container = css({
 		position: 'relative',
 		background: '#073b4c',
-		height: '100%',
-		paddingBottom: '60px',
+		// height: '100%',
+		// paddingBottom: '60px',
 		margin: '0',
 		padding: '20px',
 		boxSizing: 'border-box',
