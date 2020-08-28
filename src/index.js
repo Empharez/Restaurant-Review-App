@@ -10,7 +10,7 @@ import RestaurantModal from './components/RestaurantModal';
 
 const styles = {
 	display: 'grid',
-	gridTemplateColumns: '28% 70%'
+	gridTemplateColumns: '30% 70%'
 };
 
 class App extends Component {
@@ -129,6 +129,8 @@ class App extends Component {
 			<div
 				style={{
 					position: 'relative',
+					overflow: 'hidden',
+					height: '100vh',
 					display: 'flex',
 					flexDirection: 'column'
 				}}>
