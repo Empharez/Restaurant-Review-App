@@ -5,6 +5,7 @@ import Restaurant from '../restaurant';
 import NewRestaurantModal from './NewRestaurantModal';
 import { PropTypes } from 'prop-types';
 
+
 class MapContainer extends Component {
 	state = {
 		places: [],
@@ -17,6 +18,7 @@ class MapContainer extends Component {
 
 	onReady(mapProps, map) {
 		const { google } = this.props;
+		this.gmap = map;
 		// console.log(map.getBounds());
 
 		const opts = {
@@ -45,6 +47,7 @@ class MapContainer extends Component {
             })*/
 		});
 	}
+
 
 	handleClick(ref, map, event) {
 		console.log(ref);
@@ -88,6 +91,7 @@ class MapContainer extends Component {
 					onReady={this.onReady.bind(this)}
 					// visible={true}
 					onClick={this.handleClick.bind(this)}
+					// center={this.props.currentPosition}
 					initialCenter={this.props.currentPosition}>
 					{this.props.restaurants &&
 						this.props.restaurants.map((restaurant, i) => (

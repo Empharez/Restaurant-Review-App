@@ -30,7 +30,7 @@ export default function NewRestaurantModal({ showModal, toggleModal, location, u
 		const placeId = generatePlaceId(20);
 		console.log(placeId);
 
-		const newRestaurant = new Restaurant(name, address, location.lat, location.lng, 0, 0, placeId);
+		const newRestaurant = new Restaurant(name, address, location.lat, location.lng, 0, 0, null);
 		updateRestaurant(newRestaurant);
 		setRestaurantDetails({
 			name: '',

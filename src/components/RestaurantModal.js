@@ -22,7 +22,7 @@ export default function RestaurantModal({
 					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}
 							alt="restaurant"
 						/>
-						<span style={{ margin: '15px', padding: '10px'}}>{restaurant?.globalRating}</span>
+						<span style={{ margin: '15px', padding:'15px' }}>{restaurant?.globalRating}</span>
 						<Ratings stars={restaurant.globalRating} />
 						<p>{restaurant?.address}</p>
 					</div>

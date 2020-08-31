@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'font-awesome/css/font-awesome.css';
 import MapContainer from './components/mapp';
+import { getDetails } from './utils/googleApiHelpers';
+
 
 //components
 import Header from './components/header';
@@ -14,6 +16,10 @@ const styles = {
 };
 
 class App extends Component {
+	constructor(props){
+		super(props)
+		this.mapRef = React.createRef();
+	}
 	state = {
 		restaurants: [],
 		filtered: null,
@@ -58,12 +64,12 @@ class App extends Component {
 			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
 		);
 		this.setState({ filtered: ratingFilter });
-		console.log(ratingFilter);
+		// console.log(ratingFilter);
 	};
 	componentDidMount() {
 		if (navigator.geolocation) {
 			let vm = this;
-			navigator.geolocation.watchPosition(function (position) {
+			navigator.geolocation.getCurrentPosition(function (position) {
 				console.log(position);
 				console.log('Latitude is :', position.coords.latitude);
 				console.log('Longitude is :', position.coords.longitude);
@@ -71,6 +77,7 @@ class App extends Component {
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				};
+				console.log("Current position", currentPos)
 				vm.setState({
 					currentPosition: { ...currentPos }
 				});
@@ -102,7 +109,18 @@ class App extends Component {
 		}));
 	}
 
+	async getRatingFromPlaces(restaurant){
+		if(restaurant.placeId){
+
+			let place = await getDetails(this.mapRef.current.state.google, document.createElement('div'), restaurant.placeId);
+			console.log("place", place);
+			
+		}
+	}
+
 	getDetails(restaurant) {
+		this.getRatingFromPlaces(restaurant);
+		console.log("this.map ref", this.mapRef.current)
 		this.setState({ showRestaurantModal: !this.state.showRestaurantModal, restaurant });
 		// console.log(restaurant);
 	}
@@ -168,6 +186,7 @@ class App extends Component {
 						onMarkerClick={this.getDetails.bind(this)}
 						toggleModal={() => this.setState({ showNewRestaurantModal: !showNewRestaurantModal })}
 						showModal={showNewRestaurantModal}
+						ref = {this.mapRef}
 					/>
 				</div>
 			</div>
