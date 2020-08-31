@@ -4,7 +4,6 @@ import 'font-awesome/css/font-awesome.css';
 import MapContainer from './components/mapp';
 import { getDetails } from './utils/googleApiHelpers';
 
-
 //components
 import Header from './components/header';
 import Sidebar from './components/sidebar';
@@ -16,8 +15,8 @@ const styles = {
 };
 
 class App extends Component {
-	constructor(props){
-		super(props)
+	constructor(props) {
+		super(props);
 		this.mapRef = React.createRef();
 	}
 	state = {
@@ -27,7 +26,7 @@ class App extends Component {
 		showRestaurantModal: false,
 		showNewRestaurantModal: false,
 		// ratingFilter: [],
-		restaurant: [],
+		restaurant: null,
 		min: null,
 		max: null,
 		currentPosition: {
@@ -77,7 +76,7 @@ class App extends Component {
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				};
-				console.log("Current position", currentPos)
+				console.log('Current position', currentPos);
 				vm.setState({
 					currentPosition: { ...currentPos }
 				});
@@ -109,22 +108,25 @@ class App extends Component {
 		}));
 	}
 
-	async getRatingFromPlaces(restaurant){
-		if(restaurant.placeId){
-
-			let place = await getDetails(this.mapRef.current.state.google, document.createElement('div'), restaurant.placeId);
-			console.log("place", place);
-			
+	async getRatingFromPlaces(restaurant) {
+		if (restaurant.placeId) {
+			let place = await getDetails(
+				this.mapRef.current.state.google,
+				document.createElement('div'),
+				restaurant.placeId
+			);
+			console.log(place);
+			return place;
 		}
 	}
 
-	getDetails(restaurant) {
-		this.getRatingFromPlaces(restaurant);
-		console.log("this.map ref", this.mapRef.current)
-		this.setState({ 
+	async getDetails(restaurant) {
+		let place = await this.getRatingFromPlaces(restaurant);
+		console.log('this.map ref', place.reviews);
+		this.setState({
 			showRestaurantModal: !this.state.showRestaurantModal,
-			 restaurant: this.mapRef.current
-			 });
+			restaurant: { ...restaurant, reviews: place.reviews }
+		});
 		// console.log(restaurant);
 	}
 
@@ -169,7 +171,7 @@ class App extends Component {
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
-						restaurants={filtered !== null ? filtered : restaurants} //
+						restaurants={filtered !== null ? filtered : restaurants}
 						toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 						showModal={showModal}
 						onShowDetails={this.getDetails.bind(this)}
@@ -189,7 +191,7 @@ class App extends Component {
 						onMarkerClick={this.getDetails.bind(this)}
 						toggleModal={() => this.setState({ showNewRestaurantModal: !showNewRestaurantModal })}
 						showModal={showNewRestaurantModal}
-						ref = {this.mapRef}
+						ref={this.mapRef}
 					/>
 				</div>
 			</div>

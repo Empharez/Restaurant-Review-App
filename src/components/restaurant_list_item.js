@@ -46,13 +46,7 @@ const RestaurantItem = ({
 			/> */}
 			<div {...container}>
 				<div>
-					<h3
-						onClick={() => {
-							onShowDetails(restaurant);
-							toggleRestaurantModal();
-						}}>
-						{restaurant?.restaurantName}
-					</h3>
+					<h3 onClick={() => onShowDetails(restaurant)}>{restaurant?.restaurantName}</h3>
 					<button
 						onClick={() => {
 							toggleModal();
