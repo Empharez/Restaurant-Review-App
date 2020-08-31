@@ -28,7 +28,7 @@ export default function RestaurantModal({
 					</div>
 					<div>
 						<h3>Reviews</h3>
-						{restaurant.ratings.map(rating => (
+						{restaurant.reviews.map(rating => (
 							<div style={{ display: 'flex', alignItems: 'center' }}>
 								<p style={{ marginRight: '15px' }}>{rating.comment}</p>
 								<Ratings stars={rating.stars} />

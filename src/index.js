@@ -121,7 +121,10 @@ class App extends Component {
 	getDetails(restaurant) {
 		this.getRatingFromPlaces(restaurant);
 		console.log("this.map ref", this.mapRef.current)
-		this.setState({ showRestaurantModal: !this.state.showRestaurantModal, restaurant });
+		this.setState({ 
+			showRestaurantModal: !this.state.showRestaurantModal,
+			 restaurant: this.mapRef.current
+			 });
 		// console.log(restaurant);
 	}
 
