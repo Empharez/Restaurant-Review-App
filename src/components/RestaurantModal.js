@@ -15,7 +15,7 @@ export default function RestaurantModal({
 					&fov=80&heading=70&pitch=0
 					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}/> */}
 
-					<div>
+					<div style={{ margin: '5px' }}>
 						<img
 							src={`https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${restaurant?.address}
 					&fov=80&heading=70&pitch=0
