@@ -53,12 +53,12 @@ class App extends Component {
 	getRatings = () => {
 		this.setState({ filtered: null });
 		const { min, max, restaurants } = this.state;
-		console.log("is it working", restaurants);
+		console.log('is it working', restaurants);
 		let ratingFilter = restaurants.filter(
 			restaurant => restaurant.globalRatings >= min && restaurant.globalRatings <= max
 		);
 		this.setState({ filtered: ratingFilter });
-		 console.log(ratingFilter);
+		console.log(ratingFilter);
 	};
 	componentDidMount() {
 		if (navigator.geolocation) {
@@ -106,33 +106,39 @@ class App extends Component {
 	}
 
 	async getDetails(restaurant) {
-		if(restaurant.gotReviews){
-			this.setState({
-				showRestaurantModal: !this.state.showRestaurantModal,
-				restaurant: { ...restaurant }
-			});
-			return ;
-		}
-		let place = await this.getRatingFromPlaces(restaurant);
-		console.log('this.map ref', place.reviews);
-		if(place.reviews < 1){
-			alert('no reviews')
-		}else {
-			for(let review of place.reviews){
-				restaurant.ratings.push({
-					stars: review.rating,
-					comment: review.text,
-					author: review.author_name
-				})
-			}
-		}
-		
-		restaurant.gotReviews = true;
+		// if(restaurant.gotReviews){
+		// 	this.setState({
+		// 		showRestaurantModal: !this.state.showRestaurantModal,
+		// 		restaurant: { ...restaurant }
+		// 	});
+		// 	return ;
+		// }
+		// let place = await this.getRatingFromPlaces(restaurant);
+		// console.log('this.map ref', place.reviews);
+		// if(place.reviews < 1){
+		// 	alert('no reviews')
+		// }else {
+		// 	for(let review of place.reviews){
+		// 		restaurant.ratings.push({
+		// 			stars: review.rating,
+		// 			comment: review.text,
+		// 			author: review.author_name
+		// 		})
+		// 	}
+		// }
+
+		// restaurant.gotReviews = true;
+		// this.setState({
+		// 	showRestaurantModal: !this.state.showRestaurantModal,
+		// 	restaurant: { ...restaurant}
+		// });
+		// console.log(restaurant);
+
+		let result = await this.getRatingFromPlaces(restaurant);
 		this.setState({
 			showRestaurantModal: !this.state.showRestaurantModal,
-			restaurant: { ...restaurant}
+			restaurant: { ...restaurant, reviews: result.reviews }
 		});
-		// console.log(restaurant);
 	}
 
 	onChange(e) {
@@ -183,7 +189,6 @@ class App extends Component {
 						toggleRestaurantModal={() =>
 							this.setState({ showRestaurantModal: !showRestaurantModal })
 						}
-						
 					/>
 
 					<MapContainer

@@ -36,13 +36,19 @@ export default function RestaurantModal({
 					</div>
 					<div>
 						<h3>Reviews</h3>
-						{restaurant?.reviews.map(review => (
+						{restaurant?.reviews ? (
+							restaurant?.reviews.map(review => (
+								<div style={{ display: 'flex', flexDirection: 'column' }}>
+									<p style={{ marginRight: '15px', fontWeight: 600 }}>{review.author_name}</p>
+									<p style={{ marginRight: '15px' }}>{review.text}</p>
+									<Ratings stars={review.rating} />
+								</div>
+							))
+						) : (
 							<div style={{ display: 'flex', flexDirection: 'column' }}>
-								<p style={{ marginRight: '15px', fontWeight: 600 }}>{review.author_name}</p>
-								<p style={{ marginRight: '15px' }}>{review.text}</p>
-								<Ratings stars={review.rating} />
+								<p>No reviews</p>
 							</div>
-						))}
+						)}
 					</div>
 				</div>
 			</Modal>
