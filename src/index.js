@@ -55,7 +55,7 @@ class App extends Component {
 		const { min, max, restaurants } = this.state;
 		console.log('is it working', restaurants);
 		let ratingFilter = restaurants.filter(
-			restaurant => restaurant.globalRatings >= min && restaurant.globalRatings <= max
+			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
 		);
 		this.setState({ filtered: ratingFilter });
 		console.log(ratingFilter);
