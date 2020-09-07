@@ -20,18 +20,26 @@ export default function RestaurantModal({
 							src={`https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${restaurant?.address}
 					&fov=80&heading=70&pitch=0
 					&key=AIzaSyAkqMXQhMJwYRSvhQ1_-qS_FpV7-NbZFf8`}
+							style={{ width: '100%' }}
 							alt="restaurant"
 						/>
-						<span style={{ margin: '15px', padding: '15px' }}>{restaurant?.globalRating}</span>
-						<Ratings stars={restaurant?.globalRating} />
+						<div
+							style={{
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center'
+							}}>
+							<span style={{ margin: '15px', padding: '15px' }}>{restaurant?.globalRating}</span>
+							<Ratings stars={restaurant?.globalRating} />
+						</div>
 						<p>{restaurant?.address}</p>
 					</div>
 					<div>
 						<h3>Reviews</h3>
 						{restaurant?.reviews.map(review => (
-							<div style={{ display: 'flex', alignItems: 'center' }}>
-								<p style={{ marginRight: '15px' }}>{review.author_name}</p>
-								<p style={{ marginRight: '15px' }}>{review.text.substring(0, 30)}</p>
+							<div style={{ display: 'flex', flexDirection: 'column' }}>
+								<p style={{ marginRight: '15px', fontWeight: 600 }}>{review.author_name}</p>
+								<p style={{ marginRight: '15px' }}>{review.text}</p>
 								<Ratings stars={review.rating} />
 							</div>
 						))}

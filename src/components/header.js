@@ -6,30 +6,30 @@ const Header = ({ onChange, keywords, getRatings }) => {
 			<div className="filter">
 				<label>Restaurant: </label>
 				<input type="text" onChange={keywords} />
-					<label>
-						Min ratings:
-						<select name="min" onChange={e => onChange(e)}>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</label>
+				<label>
+					Min ratings:
+					<select name="min" onChange={e => onChange(e)}>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</label>
 
-					<label>
-						Max ratings:
-						<select name="max" onChange={e => onChange(e)}>
-							<option value="0">0</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-						</select>
-					</label>
-					<input type="submit" onSubmit={getRatings} value="Search" />
+				<label>
+					Max ratings:
+					<select name="max" onChange={e => onChange(e)}>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</label>
+				<input type="submit" onClick={getRatings} value="Search" />
 			</div>
 		</header>
 	);
