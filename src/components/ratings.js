@@ -10,13 +10,13 @@ class Rating extends Component {
 			width: `${(stars / 5) * 100}%`
 		};
 		let ratings = [];
-		for (let i = 0; i < stars; i++) {
+		for (let i = 0; i < 5; i++) {
 			ratings.push(<RatingIcon key={i}/>);
 		}
 		return (
 			<div className="sprite">
 				<div className="top" style={style}>
-					{ratings.map(icon => icon)}
+					{ratings}
 				</div>
 				{/* <div className="bottom">
 					<RatingIcon />

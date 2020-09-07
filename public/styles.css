@@ -94,7 +94,6 @@ header input {
 	unicode-bidi: bidi-override;
 	color: #404040;
 	font-size: 25px;
-	height: 25px;
 	width: 102px;
 	margin: 0;
 	position: relative;
@@ -105,7 +104,6 @@ header input {
 .top {
 	color: #ffd166;
 	padding: 0;
-	position: absolute;
 	z-index: 1;
 	display: block;
 	top: 0;
@@ -139,7 +137,9 @@ header input {
 	left: 50%;
 	width: 70%;
 	height: auto;
+	max-height: 90vh;
 	transform: translate(-50%, -50%);
+	overflow-y: scroll;
 }
 
 .modal-header {
@@ -152,8 +152,8 @@ header input {
 .restaurant-modal {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	margin: 50px;
-	padding: 30px;
+	margin: 10px;
+	padding: 10px;
 	
 }
 .new{
@@ -185,4 +185,12 @@ button {
 .modal-body input {
 	padding: 10px;
 	border-radius: 10px;
+}
+
+.review-author {
+	margin: 5px;
+  }
+
+.panel-body {
+	margin: 5px;
 }
