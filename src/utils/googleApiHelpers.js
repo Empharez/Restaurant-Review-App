@@ -13,9 +13,9 @@ export function searchNearby(google, map, request) {
     });
   }
 
-  export function getDetails(google, map, placeId) {
+  export function getDetails(google, placeId) {
     return new Promise((resolve, reject) => {
-      const service = new google.maps.places.PlacesService(map);
+      const service = new google.maps.places.PlacesService(document.createElement('div'));
       const request = {placeId}
   
       service.getDetails(request, (place, status) => {

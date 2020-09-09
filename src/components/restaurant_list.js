@@ -4,17 +4,18 @@ import RestaurantItem from './restaurant_list_item';
 
 const RestaurantList = ({ children, restaurant, restaurants, onClick }) => {
 	const list = restaurants.map((restaurant, i) => (
-		<div>
-			<RestaurantItem restaurant={restaurant} onClick={onClick} key={i} />
+		<div onClick={() => onClick(restaurant)} key={i}>
+			<RestaurantItem restaurant={restaurant}   />
 		</div>
+			
+	
 	));
 	return (
-		<div>
+		<div >
 			{children}
 			{restaurant ? (
-				<div>
-					<RestaurantItem restaurant={restaurant} onClick={onClick} />
-				</div>
+					<RestaurantItem restaurant={restaurant} />
+				
 			) : (
 				list
 			)}

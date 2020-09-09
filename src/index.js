@@ -19,30 +19,38 @@ class App extends Component {
 	state = {
 		restaurants: [],
 		filtered: null,
-		// ratingFilter: [],
 		restaurant: null,
-		min: null,
-		max: null
+		min: 0,
+		max: 5,
+		keyword: ""
 	};
 
 	getKeyword = event => {
-		//console.log(event.target.value);
-		this.setState({ filtered: null });
+		let {min, max} = this.state;
 		let keyword = event.target.value;
-		let filtered = this.state.restaurants.filter(item => {
-			return item.restaurantName.substring(0, keyword.length).toLowerCase() === keyword;
-		});
+		let filtered = this.filter(
+			keyword, min, max
+		);
 		this.setState({
-			filtered
+			filtered,
+			keyword
 		});
 		console.log(filtered);
 	};
 
+	filter(keyword, min, max){
+		const restaurants = this.state.restaurants.filter(item => item.restaurantName.toLowerCase().includes(keyword.toLowerCase())
+		&& item.globalRating >= min && item.globalRating <= max
+		)
+		return restaurants;
+
+	}
+
 	getRatings = () => {
 		this.setState({ filtered: null });
-		const { min, max, restaurants } = this.state;
-		let ratingFilter = restaurants.filter(
-			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
+		const { min, max, keyword } = this.state;
+		let ratingFilter = this.filter(
+			keyword, min, max
 		);
 		this.setState({ filtered: ratingFilter });
 		console.log(ratingFilter);
@@ -97,10 +105,11 @@ class App extends Component {
 						title={restaurant?.restaurantName || 'Restaurants'}
 						restaurants={filtered !== null ? filtered : restaurants} //
 						restaurant={restaurant}
+						onClick={this.getDetails.bind(this)}
 					/>
 
 					<MapContainer
-						restaurants={filtered}
+						restaurants={filtered !== null ? filtered : restaurants}
 						updateCallback={this.updateRestaurantList.bind(this)}
 						onMarkerClick={this.getDetails.bind(this)}
 					/>

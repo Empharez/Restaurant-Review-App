@@ -12,16 +12,12 @@ class MapContainer extends Component {
 
 	onReady(mapProps, map) {
 		const { google } = this.props;
-		//console.log(map.getBounds());
 		const opts = {
 			location: map.center,
 			radius: '1000',
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
-			console.log(results);
-			console.log(
-				'callback---',
 				this.props.updateCallback(
 					results.map(place => {
 						return new Restaurant(
@@ -35,13 +31,7 @@ class MapContainer extends Component {
 						);
 					})
 				)
-			);
-
-			/*this.setState({
-              places: results,
-              pagination
-            })*/
-		});
+			});
 	}
 
 	render() {

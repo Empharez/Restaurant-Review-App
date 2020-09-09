@@ -16,7 +16,7 @@ class Sidebar extends Component {
 					<RestaurantList
 						restaurant={this.props.restaurant}
 						restaurants={this.props.restaurants}
-						onClick={this.onClick.bind(this)}
+						onClick={this.props.onClick}
 					/>
 				</div>
 			</div>
