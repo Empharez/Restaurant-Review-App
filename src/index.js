@@ -61,6 +61,7 @@ class App extends Component {
 		console.log(ratingFilter);
 	};
 	componentDidMount() {
+		//need to fix this
 		if (navigator.geolocation) {
 			let vm = this;
 			navigator.geolocation.getCurrentPosition(function (position) {
