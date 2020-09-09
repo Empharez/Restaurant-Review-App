@@ -12,26 +12,26 @@ class Detail extends Component {
 		};
 	}
 
-	  getDetails() {
-	    const {google, params} = this.props;
-	    const {placeId} = params;
+	//   getDetails(map) {
+	//     const {google, params} = this.props;
+	//     const {placeId} = params;
 
-	    // Set the loading state
-	    this.setState({loading: true}, () => {
-	        getDetails(google, placeId)
-	        .then(place => {
-	          const {location} = place.geometry;
-	          const loc = {
-	            lat: location.lat(),
-	            lng: location.lng()
-	          }
+	//     // Set the loading state
+	//     this.setState({loading: true}, () => {
+	//         getDetails(google, map, placeId)
+	//         .then(place => {
+	//           const {location} = place.geometry;
+	//           const loc = {
+	//             lat: location.lat(),
+	//             lng: location.lng()
+	//           }
 
-	          this.setState({
-	            restaurant, location: loc, loading: false
-	          });
-	          });
-	  });
-	}
+	//           this.setState({
+	//             restaurant, location: loc, loading: false
+	//           });
+	//           });
+	//   });
+	// }
 
 	render() {
 		return <div className="details"></div>;

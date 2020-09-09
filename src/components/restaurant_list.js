@@ -3,25 +3,6 @@ import RestaurantItem from './restaurant_list_item';
 import AddRatingModal from './AddRatingModal';
 //import classes from '../css/styles.css'
 
-<<<<<<< HEAD
-const RestaurantList = ({ children, restaurant, restaurants, onClick }) => {
-	const list = restaurants.map((restaurant, i) => (
-		<div onClick={() => onClick(restaurant)} key={i}>
-			<RestaurantItem restaurant={restaurant}   />
-		</div>
-			
-	
-	));
-	return (
-		<div >
-			{children}
-			{restaurant ? (
-					<RestaurantItem restaurant={restaurant} />
-				
-			) : (
-				list
-			)}
-=======
 const RestaurantList = ({
 	children,
 	showModal,
@@ -66,7 +47,6 @@ const RestaurantList = ({
 			/>
 			{children}
 			{list}
->>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 		</div>
 	);
 };
