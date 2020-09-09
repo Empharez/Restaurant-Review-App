@@ -124,14 +124,11 @@ class App extends Component {
 				})
 			}
 		}
-		
-		
 		restaurant.gotReviews = true;
 		this.setState({
 			showRestaurantModal: !this.state.showRestaurantModal,
 			restaurant: { ...restaurant}
 		});
-		// console.log(restaurant);
 	}
 
 	onChange(e) {
