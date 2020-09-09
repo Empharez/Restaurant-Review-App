@@ -53,12 +53,10 @@ class App extends Component {
 	getRatings = () => {
 		this.setState({ filtered: null });
 		const { min, max, restaurants } = this.state;
-		console.log("is it working", restaurants);
 		let ratingFilter = restaurants.filter(
 			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
 		);
 		this.setState({ filtered: ratingFilter });
-		 console.log(ratingFilter);
 	};
 	componentDidMount() {
 		if (navigator.geolocation) {

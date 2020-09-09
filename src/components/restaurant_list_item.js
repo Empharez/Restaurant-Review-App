@@ -35,15 +35,6 @@ const RestaurantItem = ({
 
 	return (
 		<>
-			{/* <AddModal
-				item={item}
-				setItem={setItem}
-				toggleModal={toggleModal}
-				showModal={showModal}
-				// onChange={onChange}
-				// addRating={addRating}
-				// review={review}
-			/> */}
 			<div {...container}>
 				<div>
 					<h3 onClick={() => onShowDetails(restaurant)}>{restaurant?.restaurantName}</h3>

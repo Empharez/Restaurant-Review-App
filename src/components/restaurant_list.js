@@ -27,9 +27,6 @@ const RestaurantList = ({
 					setItem={setItem}
 					toggleRestaurantModal={toggleRestaurantModal}
 					onShowDetails={onShowDetails}
-					// onChange={onChange}
-					// addRating={addRating}
-					// review={review}
 				/>
 			</div>
 		);

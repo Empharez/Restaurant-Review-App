@@ -18,13 +18,6 @@ class Rating extends Component {
 				<div className="top" style={style}>
 					{ratings}
 				</div>
-				{/* <div className="bottom">
-					<RatingIcon />
-					<RatingIcon />
-					<RatingIcon />
-					<RatingIcon />
-					<RatingIcon />
-				</div> */}
 			</div>
 		);
 	}
