@@ -36,9 +36,9 @@ select {
 	height: 30px;
 	line-height: 3;
 	overflow: hidden;
-	border-radius: .25em;
+	border-radius: 0.25em;
 	flex: 1;
-	padding: 0 .5em;
+	padding: 0 0.5em;
 	cursor: pointer;
 	font-family: cursive;
 	font-size: small;
@@ -46,19 +46,18 @@ select {
 .select {
 	width: 130px;
 	height: 50px;
-	border-radius: .5em;
+	border-radius: 0.5em;
 }
-input[type=submit]{
+input[type='submit'] {
 	background-color: #fff;
 	position: relative;
 	width: 100px;
 	height: 30px;
-	border-radius: .25em;
+	border-radius: 0.25em;
 	text-align: center;
 	box-shadow: none;
-
 }
- 
+
 h3 {
 	font-size: 20px;
 	text-transform: capitalize;
@@ -136,8 +135,7 @@ header input {
 	top: 50%;
 	left: 50%;
 	width: 70%;
-	height: auto;
-	max-height: 90vh;
+	height: 80%;
 	transform: translate(-50%, -50%);
 	overflow-y: scroll;
 }
@@ -151,12 +149,11 @@ header input {
 
 .restaurant-modal {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	margin: 10px;
-	padding: 10px;
-	
+	grid-template-rows: repeat(1, 1fr);
+	margin: 50px;
+	padding: 30px;
 }
-.new{
+.new {
 	color: #000;
 }
 

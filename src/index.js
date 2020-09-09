@@ -55,7 +55,7 @@ class App extends Component {
 		const { min, max, restaurants } = this.state;
 		console.log("is it working", restaurants);
 		let ratingFilter = restaurants.filter(
-			restaurant => restaurant.globalRatings >= min && restaurant.globalRatings <= max
+			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
 		);
 		this.setState({ filtered: ratingFilter });
 		 console.log(ratingFilter);
@@ -115,9 +115,7 @@ class App extends Component {
 		}
 		let place = await this.getRatingFromPlaces(restaurant);
 		console.log('this.map ref', place.reviews);
-		if(place.reviews < 1){
-			alert('no reviews')
-		}else {
+		if(place.reviews){
 			for(let review of place.reviews){
 				restaurant.ratings.push({
 					stars: review.rating,
@@ -126,6 +124,7 @@ class App extends Component {
 				})
 			}
 		}
+		
 		
 		restaurant.gotReviews = true;
 		this.setState({

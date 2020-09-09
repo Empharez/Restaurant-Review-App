@@ -29,7 +29,7 @@ const Header = ({ onChange, keywords, getRatings }) => {
 							<option value="5">5</option>
 						</select>
 					</label>
-					<input type="submit" onSubmit={getRatings} value="Search" />
+					<input type="submit" onClick={getRatings} value="Search" />
 			</div>
 		</header>
 	);
