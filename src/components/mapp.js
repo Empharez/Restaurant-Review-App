@@ -18,15 +18,34 @@ class MapContainer extends Component {
 
 	onReady(mapProps, map) {
 		const { google } = this.props;
+<<<<<<< HEAD
+=======
 		this.gmap = map;
 		// console.log(map.getBounds());
 
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 		const opts = {
 			location: map.center,
 			radius: '1000',
 			types: ['restaurant']
 		};
 		searchNearby(google, map, opts).then((results, pagination) => {
+<<<<<<< HEAD
+				this.props.updateCallback(
+					results.map(place => {
+						return new Restaurant(
+							place.name,
+							place.vicinity,
+							place.geometry.location.lat(),
+							place.geometry.location.lng(),
+							place.rating ? place.rating : 0,
+							place.user_ratings_total ? place.user_ratings_total : 0,
+							place.place_id
+						);
+					})
+				)
+			});
+=======
 			console.log("results->>", results)
 			this.props.getRestaurant(
 				results.map(place => {
@@ -47,6 +66,7 @@ class MapContainer extends Component {
               pagination
             })*/
 		});
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 	}
 
 

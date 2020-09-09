@@ -10,6 +10,17 @@ class Sidebar extends Component {
 	}
 	render() {
 		return (
+<<<<<<< HEAD
+			<div className="sidebar">
+				<div className="heading">
+					<h1>{this.props.title}</h1>
+					<RestaurantList
+						restaurant={this.props.restaurant}
+						restaurants={this.props.restaurants}
+						onClick={this.props.onClick}
+					/>
+				</div>
+=======
 			<div className="heading">
 				<RestaurantList
 					toggleModal={this.props.toggleModal}
@@ -22,6 +33,7 @@ class Sidebar extends Component {
 					// addRating={this.props.addRating}
 					// review={this.props.review}
 				/>
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 			</div>
 		);
 	}

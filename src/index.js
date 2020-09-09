@@ -22,6 +22,20 @@ class App extends Component {
 	state = {
 		restaurants: [],
 		filtered: null,
+<<<<<<< HEAD
+		restaurant: null,
+		min: 0,
+		max: 5,
+		keyword: ""
+	};
+
+	getKeyword = event => {
+		let {min, max} = this.state;
+		let keyword = event.target.value;
+		let filtered = this.filter(
+			keyword, min, max
+		);
+=======
 		showModal: false,
 		showRestaurantModal: false,
 		showNewRestaurantModal: false,
@@ -45,17 +59,33 @@ class App extends Component {
 				names[1]?.substring(0, keyword.length).toLowerCase() === keyword
 			);
 		});
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 		this.setState({
-			filtered
+			filtered,
+			keyword
 		});
 	};
 
+	filter(keyword, min, max){
+		const restaurants = this.state.restaurants.filter(item => item.restaurantName.toLowerCase().includes(keyword.toLowerCase())
+		&& item.globalRating >= min && item.globalRating <= max
+		)
+		return restaurants;
+
+	}
+
 	getRatings = () => {
 		this.setState({ filtered: null });
+<<<<<<< HEAD
+		const { min, max, keyword } = this.state;
+		let ratingFilter = this.filter(
+			keyword, min, max
+=======
 		const { min, max, restaurants } = this.state;
 		console.log('is it working', restaurants);
 		let ratingFilter = restaurants.filter(
 			restaurant => restaurant.globalRating >= min && restaurant.globalRating <= max
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 		);
 		this.setState({ filtered: ratingFilter });
 		console.log(ratingFilter);
@@ -183,6 +213,16 @@ class App extends Component {
 				<div style={styles}>
 					<Sidebar
 						title={restaurant?.restaurantName || 'Restaurants'}
+<<<<<<< HEAD
+						restaurants={filtered !== null ? filtered : restaurants} //
+						restaurant={restaurant}
+						onClick={this.getDetails.bind(this)}
+					/>
+
+					<MapContainer
+						restaurants={filtered !== null ? filtered : restaurants}
+						updateCallback={this.updateRestaurantList.bind(this)}
+=======
 						restaurants={filtered !== null ? filtered : restaurants}
 						toggleModal={() => this.setState({ showModal: !this.state.showModal })}
 						showModal={showModal}
@@ -197,6 +237,7 @@ class App extends Component {
 						restaurants={filtered ? filtered : restaurants}
 						getRestaurant={this.getRestaurantList.bind(this)}
 						updateRestaurant={this.updateRestaurantList.bind(this)}
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 						onMarkerClick={this.getDetails.bind(this)}
 						toggleModal={() => this.setState({ showNewRestaurantModal: !showNewRestaurantModal })}
 						showModal={showNewRestaurantModal}
