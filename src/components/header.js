@@ -2,9 +2,10 @@ import React from 'react';
 const Header = ({ onChange, keywords, getRatings }) => {
 	return (
 		<header>
-			<div className="logo">Restaurants Review App</div>
-			<input type="text" onChange={keywords} />
-			<div className="logo">
+			<h1>Restaurants Review App</h1>
+			<div className="filter">
+				<label>Restaurant: </label>
+				<input type="text" onChange={keywords} />
 				<label>
 					Min ratings:
 					<select name="min" onChange={e => onChange(e)}>
@@ -28,9 +29,8 @@ const Header = ({ onChange, keywords, getRatings }) => {
 						<option value="5">5</option>
 					</select>
 				</label>
-				<input onClick={getRatings} type="submit" value="Submit" />
+				<input type="submit" onClick={getRatings} value="Search" />
 			</div>
-			<div></div>
 		</header>
 	);
 };

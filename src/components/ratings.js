@@ -10,7 +10,11 @@ class Rating extends Component {
 			width: `${(stars / 5) * 100}%`
 		};
 		let ratings = [];
+<<<<<<< HEAD
 		for (let i = 0; i < stars; i++) {
+=======
+		for (let i = 0; i < 5; i++) {
+>>>>>>> e291527e799b35a38a51abff7233062a05136eeb
 			ratings.push(<RatingIcon key={i}/>);
 		}
 		return (
